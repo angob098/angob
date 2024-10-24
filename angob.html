@@ -1,0 +1,146 @@
+<html><head><base href="https://filipinonamegen.com"/>
+<meta charset="UTF-8">
+<title>Filipino Name Generator</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f7c978 0%, #f7d794 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+  }
+
+  h1 {
+    color: #2d3436;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    color: #636e72;
+    margin-bottom: 30px;
+  }
+
+  button {
+    background: #e17055;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  button:hover {
+    background: #d63031;
+    transform: scale(1.05);
+  }
+
+  .name-display {
+    margin: 30px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .name {
+    font-size: 1.8em;
+    color: #2d3436;
+    margin: 10px 0;
+  }
+
+  .meaning {
+    color: #636e72;
+    font-style: italic;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Filipino Name Generator</h1>
+    <p class="description">Generate authentic Filipino names inspired by the rich cultural heritage of the Philippines.</p>
+    
+    <button onclick="generateName()">Generate Name</button>
+    
+    <div class="name-display">
+      <div id="fullName" class="name">Click to generate a name</div>
+      <div id="meaning" class="meaning"></div>
+    </div>
+  </div>
+
+<script>
+const firstNames = {
+  male: [
+    {name: "Agapito", meaning: "Beloved"},
+    {name: "Bayani", meaning: "Hero"},
+    {name: "Crisanto", meaning: "Bearer of Christ"},
+    {name: "Danilo", meaning: "God is my judge"},
+    {name: "Efren", meaning: "Fruitful"},
+    {name: "Fernando", meaning: "Adventurous"},
+    {name: "Gregorio", meaning: "Watchful"},
+    {name: "Isagani", meaning: "Has honor"}
+  ],
+  female: [
+    {name: "Amihan", meaning: "North wind"},
+    {name: "Bituin", meaning: "Star"},
+    {name: "Corazon", meaning: "Heart"},
+    {name: "Dalisay", meaning: "Pure"},
+    {name: "Esmeralda", meaning: "Emerald"},
+    {name: "Flores", meaning: "Flower"},
+    {name: "Hiraya", meaning: "Fruit of hopes and dreams"},
+    {name: "Isay", meaning: "Strength"}
+  ]
+};
+
+const lastNames = [
+  {name: "Dela Cruz", meaning: "Of the Cross"},
+  {name: "Santos", meaning: "Saints"},
+  {name: "Reyes", meaning: "Kings"},
+  {name: "Ramos", meaning: "Branches"},
+  {name: "Mercado", meaning: "Market"},
+  {name: "Bautista", meaning: "Baptist"},
+  {name: "Villanueva", meaning: "New House"},
+  {name: "Mendoza", meaning: "Cold Mountain"}
+];
+
+function generateName() {
+  const gender = Math.random() < 0.5 ? 'male' : 'female';
+  const firstName = firstNames[gender][Math.floor(Math.random() * firstNames[gender].length)];
+  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+  
+  const fullNameElement = document.getElementById('fullName');
+  const meaningElement = document.getElementById('meaning');
+  
+  fullNameElement.className = 'name';
+  void fullNameElement.offsetWidth; // Trigger reflow
+  fullNameElement.className = 'name fade-in';
+  
+  fullNameElement.textContent = `${firstName.name} ${lastName.name}`;
+  meaningElement.textContent = `First name means "${firstName.meaning}" • Last name means "${lastName.meaning}"`;
+}
+</script>
+</body></html>
